@@ -1,13 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update]
-  
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
-    
- 
+
     @articles = Article.all
   end
   def show
-   
+
   end
   def new
     @article = Article.new
@@ -24,11 +24,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-   
+
   end
 
   def update
-    
+
     if @article .update(article_params)
       redirect_to article_path(@article),notice: '更新できました'
     else
@@ -43,7 +43,6 @@ def destroy
   redirect_to root_path, notice: '削除に成功しました'
 
 end
-
 
   private
   def article_params
