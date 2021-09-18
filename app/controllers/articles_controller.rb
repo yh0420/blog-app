@@ -29,14 +29,14 @@ class ArticlesController < ApplicationController
   end
 
   def update
-     @article = current_user.articles.find(params[:id])
-    if @article .update(article_params)
-      redirect_to article_path(@article),notice: '更新できました'
+    @article = current_user.articles.find(params[:id])
+    if @article.update(article_params)
+      redirect_to article_path(@article), notice: '更新できました'
     else
       flash.now[:error] = '更新できませんでした'
       render :edit
+    end
   end
-end
 
 def destroy
   article = current_user.articles.find(params[:id])
